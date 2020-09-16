@@ -113,7 +113,7 @@ class CustomFanRow extends Polymer.Element {
 			customLowText: 'LOW',
 			customMedText: 'MED',
 			customHiText: 'HIGH',
-			customOnText: 'MAX',
+			customOnText: 'ON',
 			...config
 			};
 	}
@@ -221,7 +221,7 @@ class CustomFanRow extends Polymer.Element {
 				hicolor = 'background-color: var(--disabled-text-color)';
 			}
 
-			if (on == 'on') {
+			if (max == 'on') {
 				maxcolor = 'background-color: var(--primary-color)';
 			} else {
 				maxcolor = 'background-color: var(--disabled-text-color)';
