@@ -28,28 +28,34 @@ class CustomFanRow extends Polymer.Element {
 				<div class='horizontal justified layout' on-click="stopPropagation">
 					<button
 						class='speed'
-						style='[[_leftColor]]'
-						toggles name="[[_leftName]]"
+						style='[[_firstColor]]'
+						toggles name="[[_firstName]]"
 						on-click='setSpeed'
-						disabled='[[_leftState]]'>[[_leftText]]</button>
+						disabled='[[_firstState]]'>[[_firstText]]</button>
 					<button
 						class='speed'
-						style='[[_midLeftColor]]'
-						toggles name="[[_midLeftName]]"
+						style='[[_secondColor]]'
+						toggles name="[[_secondName]]"
 						on-click='setSpeed'
-						disabled='[[_midLeftState]]'>[[_midLeftText]]</button>
+						disabled='[[_secondState]]'>[[_secondText]]</button>
 					<button
 						class='speed'
-						style='[[_midRightColor]]'
-						toggles name="[[_midRightName]]"
+						style='[[_thirdColor]]'
+						toggles name="[[_thirdName]]"
 						on-click='setSpeed'
-						disabled='[[_midRightState]]'>[[_midRightText]]</button>
+						disabled='[[_thirdState]]'>[[_thirdText]]</button>
 					<button
 						class='speed'
-						style='[[_rightColor]]'
-						toggles name="[[_rightName]]"
+						style='[[_fourthColor]]'
+						toggles name="[[_fourthName]]"
 						on-click='setSpeed'
-						disabled='[[_rightState]]'>[[_rightText]]</button>
+						disabled='[[_fourthState]]'>[[_fourthText]]</button>
+					<button
+						class='speed'
+						style='[[_fifthColor]]'
+						toggles name="[[_fifthName]]"
+						on-click='setSpeed'
+						disabled='[[_fifthState]]'>[[_fifthText]]</button>
 				</div>
 			</hui-generic-entity-row>
         `;
@@ -63,22 +69,29 @@ class CustomFanRow extends Polymer.Element {
 			},
 			_config: Object,
 			_stateObj: Object,
-			_leftColor: String,
-			_midLeftColor: String,
-			_midRightColor: String,
-			_rightColor: String,
-			_leftText: String,
-			_midLeftText: String,
-			_midRightText: String,
-			_rightText: String,
-			_leftName: String,
-			_midLeftName: String,
-			_midRightName: String,
-			_rightName: String,
-			_leftState: Boolean,
-			_midLeftState: Boolean,
-			_midRightState: Boolean,
-			_rightState: Boolean,
+			_firstColor: String,
+			_secondColor: String,
+			_thirdColor: String,
+			_fourthColor: String,
+			_fifthColor: String,
+
+			_firstText: String,
+			_secondText: String,
+			_thirdText: String,
+			_fourthText: String,
+			_fifthText: String,
+			
+			_firstName: String,
+			_secondName: String,
+			_thirdName: String,
+			_fourthName: String,
+			_fifthName: String,
+			
+			_firstState: Boolean,
+			_secondState: Boolean,
+			_thirdState: Boolean,
+			_fourthState: Boolean,
+			_fifthState: Boolean,
 
 		}
 	}
@@ -94,11 +107,13 @@ class CustomFanRow extends Polymer.Element {
 			isOnLowColor: '#43A047',
 			isOnMedColor: '#43A047',
 			isOnHiColor: '#43A047',
+			isOnOnColor: '#43A047',
 			buttonInactiveColor: '#759aaa',
 			customOffText: 'OFF',
 			customLowText: 'LOW',
 			customMedText: 'MED',
 			customHiText: 'HIGH',
+			customOnText: 'ON',
 			...config
 			};
 	}
@@ -110,15 +125,19 @@ class CustomFanRow extends Polymer.Element {
 		const custTheme = config.customTheme;
 		const sendStateWithSpeed = config.sendStateWithSpeed;
 		const revButtons = config.reverseButtons;
+
 		const custOnLowClr = config.isOnLowColor;
 		const custOnMedClr = config.isOnMedColor;
 		const custOnHiClr = config.isOnHiColor;
+		const custOnOnClr = config.isOnOnColor;
 		const custOffSpdClr = config.buttonInactiveColor;
 		const custOffClr = config.isOffColor;
+
 		const custOffTxt = config.customOffText;
 		const custLowTxt = config.customLowText;
 		const custMedTxt = config.customMedText;
 		const custHiTxt = config.customHiText;
+		const custOnTxt = config.customOnText;
 		
 		let speed;
 			if (stateObj && stateObj.attributes) {
@@ -169,12 +188,12 @@ class CustomFanRow extends Polymer.Element {
 			} else {
 				hicolor = 'background-color:' + custOffSpdClr;
 			}
+
 			if (on == 'on') {
 				oncolor = 'background-color:'  + custOnOnClr;
 			} else {
 				oncolor = 'background-color:' + custOffSpdClr;
 			}
-		
 		
 			if (offstate == 'on') {
 				offcolor = 'background-color:'  + custOffClr;
@@ -231,46 +250,56 @@ class CustomFanRow extends Polymer.Element {
 		if (revButtons) {
 			this.setProperties({
 				_stateObj: stateObj,
-				_leftState: offstate == 'on',
-				_midLeftState: low == 'on',
-				_midRightState: med == 'on',
-				_rightState: high == 'on',
-				_rightMState: on == 'on',
-				_leftColor: offcolor,
-				_midLeftColor: lowcolor,
-				_midRightColor: medcolor,
-				_rightColor: hicolor,
-				_leftText: offtext,
-				_midLeftText: lowtext,
-				_midRightText: medtext,
-				_rightText: hitext,
-				_leftName: offname,
-				_midLeftName: lowname,
-				_midRightName: medname,
-				_rightName: hiname,
-				_rightMName: onname,
+				_firstState: offstate == 'on',
+				_secondState: low == 'on',
+				_thirdState: med == 'on',
+				_fourthtate: high == 'on',
+				_fifthState: on == 'on',
+
+				_firstColor: offcolor,
+				_secondColor: lowcolor,
+				_thirdColor: medcolor,
+				_fourthColor: hicolor,
+				_fifthColor: oncolor,
+
+				_firstText: offtext,
+				_secondText: lowtext,
+				_thirdText: medtext,
+				_fourthText: hitext,
+				_fifthText: ontext,
+
+				_firstName: offname,
+				_secondName: lowname,
+				_thirdName: medname,
+				_fourthName: hiname,
+				_fifthName: onname,
 			});
 		} else {
 			this.setProperties({
 				_stateObj: stateObj,
-				_leftMState: on == 'on',
-				_leftState: high == 'on',
-				_midLeftState: med == 'on',
-				_midRightState: low == 'on',
-				_rightState: offstate == 'on',
-				_leftColor: hicolor,
-				_midLeftColor: medcolor,
-				_midRightColor: lowcolor,
-				_rightColor: offcolor,
-				_leftText: hitext,
-				_midLeftText: medtext,
-				_midRightText: lowtext,
-				_rightText: offtext,
-				_leftName: hiname,
-				_leftMName: ontext,
-				_midLeftName: medname,
-				_midRightName: lowname,
-				_rightName: offname,
+				_firstState: on == 'on',
+				_secondState: high == 'on',
+				_thirdState: med == 'on',
+				_fourthState: low == 'on',
+				_fifthState: offstate == 'on',
+
+				_firstColor: oncolor,
+				_secondColor: hicolor,
+				_thirdColor: medcolor,
+				_fourthColor: lowcolor,
+				_fifthColor: offcolor,
+
+				_firstText: ontext,
+				_secondText: hitext,
+				_thirdText: medtext,
+				_fourthText: lowtext,
+				_fifthText: offtext,
+
+				_firstName: ontext,
+				_secondName: hiname,
+				_thirdName: medname,
+				_fourthName: lowname,
+				_fifthName: offname,
 			});
 		}
     }
