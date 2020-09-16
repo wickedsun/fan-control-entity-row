@@ -107,7 +107,7 @@ class CustomFanRow extends Polymer.Element {
 			isOnLowColor: '#43A047',
 			isOnMedColor: '#43A047',
 			isOnHiColor: '#43A047',
-			isOnOnColor: '#43A047',
+			isOnMaxColor: '#43A047',
 			buttonInactiveColor: '#759aaa',
 			customOffText: 'OFF',
 			customLowText: 'LOW',
@@ -129,7 +129,7 @@ class CustomFanRow extends Polymer.Element {
 		const custOnLowClr = config.isOnLowColor;
 		const custOnMedClr = config.isOnMedColor;
 		const custOnHiClr = config.isOnHiColor;
-		const custOnOnClr = config.isOnMaxColor;
+		const custOnMaxClr = config.isOnMaxColor;
 		const custOffSpdClr = config.buttonInactiveColor;
 		const custOffClr = config.isOffColor;
 
@@ -137,7 +137,7 @@ class CustomFanRow extends Polymer.Element {
 		const custLowTxt = config.customLowText;
 		const custMedTxt = config.customMedText;
 		const custHiTxt = config.customHiText;
-		const custOnTxt = config.customMaxText;
+		const custMaxTxt = config.customMaxText;
 		
 		let speed;
 		if (stateObj && stateObj.attributes) {
@@ -190,7 +190,7 @@ class CustomFanRow extends Polymer.Element {
 			}
 
 			if (max == 'on') {
-				oncolor = 'background-color:'  + custOnOnClr;
+				oncolor = 'background-color:'  + custOnMaxClr;
 			} else {
 				oncolor = 'background-color:' + custOffSpdClr;
 			}
@@ -238,7 +238,7 @@ class CustomFanRow extends Polymer.Element {
 		let lowtext = custLowTxt;
 		let medtext = custMedTxt;
 		let hitext = custHiTxt;
-		let maxtext = custOnTxt;
+		let maxtext = custMaxTxt;
 		
 		let maxname = 'on';
 		let hiname = 'high';
