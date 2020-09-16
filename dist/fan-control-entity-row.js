@@ -312,7 +312,7 @@ class CustomFanRow extends Polymer.Element {
 
 	setSpeed(e) {
 		const speed = e.currentTarget.getAttribute('name');
-		console.log(stateObj.attributes.speed)
+		console.log('speed ' + speed)
 		if( speed == 'off' ){
 			this.hass.callService('fan', 'turn_off', {entity_id: this._config.entity});
 			this.hass.callService('fan', 'set_speed', {entity_id: this._config.entity, speed: speed});
