@@ -113,7 +113,7 @@ class CustomFanRow extends Polymer.Element {
 			customLowText: 'LOW',
 			customMedText: 'MED',
 			customHiText: 'HIGH',
-			customOnText: 'ON',
+			customOnText: 'MAX',
 			...config
 			};
 	}
@@ -147,7 +147,7 @@ class CustomFanRow extends Polymer.Element {
 		let low;
 		let med;
 		let high;
-		let on;
+		let max;
 		let offstate;
 		
 		if (stateObj && stateObj.attributes) {
@@ -158,7 +158,7 @@ class CustomFanRow extends Polymer.Element {
 			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'high') {
 				high = 'on';
 			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'on') {
-				on = 'on';
+				max = 'on';
 			} else {
 				offstate = 'on';
 			}
@@ -167,7 +167,7 @@ class CustomFanRow extends Polymer.Element {
 		let lowcolor;
 		let medcolor;
 		let hicolor;
-		let oncolor;
+		let maxcolor;
 		let offcolor;
 				
 		if (custTheme) {
@@ -189,10 +189,10 @@ class CustomFanRow extends Polymer.Element {
 				hicolor = 'background-color:' + custOffSpdClr;
 			}
 
-			if (on == 'on') {
-				oncolor = 'background-color:'  + custOnOnClr;
+			if (max == 'on') {
+				maxcolor = 'background-color:'  + custOnOnClr;
 			} else {
-				oncolor = 'background-color:' + custOffSpdClr;
+				maxcolor = 'background-color:' + custOffSpdClr;
 			}
 		
 			if (offstate == 'on') {
@@ -222,9 +222,9 @@ class CustomFanRow extends Polymer.Element {
 			}
 
 			if (on == 'on') {
-				oncolor = 'background-color: var(--primary-color)';
+				maxcolor = 'background-color: var(--primary-color)';
 			} else {
-				oncolor = 'background-color: var(--disabled-text-color)';
+				maxcolor = 'background-color: var(--disabled-text-color)';
 			}
 		
 			if (offstate == 'on') {
@@ -254,7 +254,7 @@ class CustomFanRow extends Polymer.Element {
 				_secondState: low == 'on',
 				_thirdState: med == 'on',
 				_fourthtate: high == 'on',
-				_fifthState: on == 'on',
+				_fifthState: max == 'on',
 
 				_firstColor: offcolor,
 				_secondColor: lowcolor,
@@ -277,7 +277,7 @@ class CustomFanRow extends Polymer.Element {
 		} else {
 			this.setProperties({
 				_stateObj: stateObj,
-				_firstState: on == 'on',
+				_firstState: max == 'on',
 				_secondState: high == 'on',
 				_thirdState: med == 'on',
 				_fourthState: low == 'on',
