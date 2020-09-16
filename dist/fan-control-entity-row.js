@@ -113,13 +113,12 @@ class CustomFanRow extends Polymer.Element {
 			customLowText: 'LOW',
 			customMedText: 'MED',
 			customHiText: 'HIGH',
-			customOnText: 'ON',
+			customOnText: 'MAX',
 			...config
 			};
 	}
 
 	hassChanged(hass) {
-
 		const config = this._config;
 		const stateObj = hass.states[config.entity];
 		const custTheme = config.customTheme;
@@ -137,33 +136,31 @@ class CustomFanRow extends Polymer.Element {
 		const custLowTxt = config.customLowText;
 		const custMedTxt = config.customMedText;
 		const custHiTxt = config.customHiText;
-		const custOnTxt = config.customOnText;
+		const custMaxTxt = config.customOnText;
 		
 		let speed;
-			if (stateObj && stateObj.attributes) {
-				speed = stateObj.attributes.speed || 'off';
-			}
+		if (stateObj && stateObj.attributes) {
+			speed = stateObj.attributes.fan_mode || 'off';
+		}
 		
 		let low;
 		let med;
 		let high;
 		let max;
 		let offstate;
-
-		console.log(stateObj.attributes.speed)
+		console.log(stateObj.attributes)
 		if (stateObj && stateObj.attributes) {
-			if (stateObj.state == 'on' && stateObj.attributes.speed == 'low') {
+			if (stateObj.state == 'on' && stateObj.attributes.fan_mode == 'low') {
 				low = 'on';
-			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'medium') {
+			} else if (stateObj.state == 'on' && stateObj.attributes.fan_mode == 'medium') {
 				med = 'on';
-			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'high') {
+			} else if (stateObj.state == 'on' && stateObj.attributes.fan_mode == 'high') {
 				high = 'on';
-			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'on') {
+			} else if (stateObj.state == 'on' && stateObj.attributes.fan_mode == 'on') {
 				max = 'on';
 			} else {
 				offstate = 'on';
 			}
-			console.log('speed set to ' + stateObj.attributes.speed)
 		}
 		
 		let lowcolor;
@@ -240,9 +237,9 @@ class CustomFanRow extends Polymer.Element {
 		let lowtext = custLowTxt;
 		let medtext = custMedTxt;
 		let hitext = custHiTxt;
-		let ontext = custOnTxt;
+		let maxtext = custMaxTxt;
 		
-		let onname = 'on';
+		let maxname = 'on';
 		let hiname = 'high';
 		let medname = 'medium';
 		let lowname = 'low';
@@ -262,19 +259,19 @@ class CustomFanRow extends Polymer.Element {
 				_secondColor: lowcolor,
 				_thirdColor: medcolor,
 				_fourthColor: hicolor,
-				_fifthColor: oncolor,
+				_fifthColor: maxcolor,
 
 				_firstText: offtext,
 				_secondText: lowtext,
 				_thirdText: medtext,
 				_fourthText: hitext,
-				_fifthText: ontext,
+				_fifthText: maxtext,
 
 				_firstName: offname,
 				_secondName: lowname,
 				_thirdName: medname,
 				_fourthName: hiname,
-				_fifthName: onname,
+				_fifthName: maxname,
 			});
 		} else {
 			this.setProperties({
@@ -291,13 +288,13 @@ class CustomFanRow extends Polymer.Element {
 				_fourthColor: lowcolor,
 				_fifthColor: offcolor,
 
-				_firstText: ontext,
+				_firstText: maxtext,
 				_secondText: hitext,
 				_thirdText: medtext,
 				_fourthText: lowtext,
 				_fifthText: offtext,
 
-				_firstName: ontext,
+				_firstName: maxname,
 				_secondName: hiname,
 				_thirdName: medname,
 				_fourthName: lowname,
@@ -312,7 +309,7 @@ class CustomFanRow extends Polymer.Element {
 
 	setSpeed(e) {
 		const speed = e.currentTarget.getAttribute('name');
-		console.log('speed ' + speed)
+		console.log('speed: ' + speed)
 		if( speed == 'off' ){
 			this.hass.callService('fan', 'turn_off', {entity_id: this._config.entity});
 			this.hass.callService('fan', 'set_speed', {entity_id: this._config.entity, speed: speed});
