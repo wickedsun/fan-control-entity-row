@@ -149,7 +149,7 @@ class CustomFanRow extends Polymer.Element {
 		let high;
 		let max;
 		let offstate;
-		
+		console.log(stateObj.attributes.speed)
 		if (stateObj && stateObj.attributes) {
 			if (stateObj.state == 'on' && stateObj.attributes.speed == 'low') {
 				low = 'on';
@@ -159,10 +159,10 @@ class CustomFanRow extends Polymer.Element {
 				high = 'on';
 			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'on') {
 				max = 'on';
-				console.log('speed set to on (max)')
 			} else {
 				offstate = 'on';
 			}
+			console.log('speed set to ' + stateObj.attributes.speed)
 		}
 		
 		let lowcolor;
