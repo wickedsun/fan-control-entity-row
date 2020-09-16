@@ -128,6 +128,7 @@ class CustomFanRow extends Polymer.Element {
 		let low;
 		let med;
 		let high;
+		let on;
 		let offstate;
 		
 		if (stateObj && stateObj.attributes) {
@@ -137,6 +138,8 @@ class CustomFanRow extends Polymer.Element {
 				med = 'on';
 			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'high') {
 				high = 'on';
+			} else if (stateObj.state == 'on' && stateObj.attributes.speed == 'on') {
+				on = 'on';
 			} else {
 				offstate = 'on';
 			}
@@ -145,6 +148,7 @@ class CustomFanRow extends Polymer.Element {
 		let lowcolor;
 		let medcolor;
 		let hicolor;
+		let oncolor;
 		let offcolor;
 				
 		if (custTheme) {
@@ -165,6 +169,12 @@ class CustomFanRow extends Polymer.Element {
 			} else {
 				hicolor = 'background-color:' + custOffSpdClr;
 			}
+			if (on == 'on') {
+				oncolor = 'background-color:'  + custOnOnClr;
+			} else {
+				oncolor = 'background-color:' + custOffSpdClr;
+			}
+		
 		
 			if (offstate == 'on') {
 				offcolor = 'background-color:'  + custOffClr;
@@ -191,6 +201,12 @@ class CustomFanRow extends Polymer.Element {
 			} else {
 				hicolor = 'background-color: var(--disabled-text-color)';
 			}
+
+			if (on == 'on') {
+				oncolor = 'background-color: var(--primary-color)';
+			} else {
+				oncolor = 'background-color: var(--disabled-text-color)';
+			}
 		
 			if (offstate == 'on') {
 				offcolor = 'background-color: var(--primary-color)';
@@ -203,7 +219,9 @@ class CustomFanRow extends Polymer.Element {
 		let lowtext = custLowTxt;
 		let medtext = custMedTxt;
 		let hitext = custHiTxt;
+		let ontext = custOnTxt;
 		
+		let onname = 'on';
 		let hiname = 'high';
 		let medname = 'medium';
 		let lowname = 'low';
@@ -217,6 +235,7 @@ class CustomFanRow extends Polymer.Element {
 				_midLeftState: low == 'on',
 				_midRightState: med == 'on',
 				_rightState: high == 'on',
+				_rightMState: on == 'on',
 				_leftColor: offcolor,
 				_midLeftColor: lowcolor,
 				_midRightColor: medcolor,
@@ -229,10 +248,12 @@ class CustomFanRow extends Polymer.Element {
 				_midLeftName: lowname,
 				_midRightName: medname,
 				_rightName: hiname,
+				_rightMName: onname,
 			});
 		} else {
 			this.setProperties({
 				_stateObj: stateObj,
+				_leftMState: on == 'on',
 				_leftState: high == 'on',
 				_midLeftState: med == 'on',
 				_midRightState: low == 'on',
@@ -246,6 +267,7 @@ class CustomFanRow extends Polymer.Element {
 				_midRightText: lowtext,
 				_rightText: offtext,
 				_leftName: hiname,
+				_leftMName: ontext,
 				_midLeftName: medname,
 				_midRightName: lowname,
 				_rightName: offname,
