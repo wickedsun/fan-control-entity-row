@@ -74,16 +74,19 @@ class CustomFanRow extends Polymer.Element {
 			_thirdColor: String,
 			_fourthColor: String,
 			_fifthColor: String,
+
 			_firstText: String,
 			_secondText: String,
 			_thirdText: String,
 			_fourthText: String,
 			_fifthText: String,
+			
 			_firstName: String,
 			_secondName: String,
 			_thirdName: String,
 			_fourthName: String,
 			_fifthName: String,
+			
 			_firstState: Boolean,
 			_secondState: Boolean,
 			_thirdState: Boolean,
@@ -104,11 +107,13 @@ class CustomFanRow extends Polymer.Element {
 			isOnLowColor: '#43A047',
 			isOnMedColor: '#43A047',
 			isOnHiColor: '#43A047',
+			isOnOnColor: '#43A047',
 			buttonInactiveColor: '#759aaa',
 			customOffText: 'OFF',
 			customLowText: 'LOW',
 			customMedText: 'MED',
 			customHiText: 'HIGH',
+			customOnText: 'ON',
 			...config
 			};
 	}
@@ -120,15 +125,19 @@ class CustomFanRow extends Polymer.Element {
 		const custTheme = config.customTheme;
 		const sendStateWithSpeed = config.sendStateWithSpeed;
 		const revButtons = config.reverseButtons;
+
 		const custOnLowClr = config.isOnLowColor;
 		const custOnMedClr = config.isOnMedColor;
 		const custOnHiClr = config.isOnHiColor;
+		const custOnOnClr = config.isOnOnColor;
 		const custOffSpdClr = config.buttonInactiveColor;
 		const custOffClr = config.isOffColor;
+
 		const custOffTxt = config.customOffText;
 		const custLowTxt = config.customLowText;
 		const custMedTxt = config.customMedText;
 		const custHiTxt = config.customHiText;
+		const custOnTxt = config.customOnText;
 		
 		let speed;
 			if (stateObj && stateObj.attributes) {
@@ -179,12 +188,12 @@ class CustomFanRow extends Polymer.Element {
 			} else {
 				hicolor = 'background-color:' + custOffSpdClr;
 			}
+
 			if (on == 'on') {
 				oncolor = 'background-color:'  + custOnOnClr;
 			} else {
 				oncolor = 'background-color:' + custOffSpdClr;
 			}
-		
 		
 			if (offstate == 'on') {
 				offcolor = 'background-color:'  + custOffClr;
