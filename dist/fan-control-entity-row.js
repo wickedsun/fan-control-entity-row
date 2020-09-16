@@ -283,7 +283,7 @@ class CustomFanRow extends Polymer.Element {
 				_fourthState: low == 'on',
 				_fifthState: offstate == 'on',
 
-				_firstColor: oncolor,
+				_firstColor: maxcolor,
 				_secondColor: hicolor,
 				_thirdColor: medcolor,
 				_fourthColor: lowcolor,
